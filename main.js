@@ -1,7 +1,5 @@
-
 let rotatorTimer = null;
 let telemetryTimer = null;
-let sliderAutoTimer = null;
 let canvasAnimId = null;
 let isScrollBound = false;
 let isDelegationBound = false;
@@ -14,11 +12,8 @@ function initApp() {
   initScrollSlideAnimations();
   initNavbarScroll();
   initHeroCanvas();
-  initBlurControl();
   initTelemetryStream();
-  initInspectorDemo();
-  initCounters();
-  initTestimonialSlider();
+  initHeroVideo();
 }
 
 function cleanupTimers() {
@@ -29,10 +24,6 @@ function cleanupTimers() {
   if (telemetryTimer) {
     clearInterval(telemetryTimer);
     telemetryTimer = null;
-  }
-  if (sliderAutoTimer) {
-    clearInterval(sliderAutoTimer);
-    sliderAutoTimer = null;
   }
   if (canvasAnimId) {
     cancelAnimationFrame(canvasAnimId);
@@ -56,7 +47,6 @@ function bindGlobalDelegation() {
   isDelegationBound = true;
 
   document.addEventListener('click', (e) => {
-
     const faqTrigger = e.target.closest('.faq-trigger');
     if (faqTrigger) {
       e.preventDefault();
@@ -84,34 +74,6 @@ function bindGlobalDelegation() {
     if (copyBtn) {
       e.preventDefault();
       handleCopyServerIP();
-      return;
-    }
-
-    const inspectorTab = e.target.closest('.inspector-tab');
-    if (inspectorTab) {
-      e.preventDefault();
-      handleInspectorTabClick(inspectorTab);
-      return;
-    }
-
-    const prevSlider = e.target.closest('#sliderPrev');
-    if (prevSlider) {
-      e.preventDefault();
-      handleSliderNav(-1);
-      return;
-    }
-
-    const nextSlider = e.target.closest('#sliderNext');
-    if (nextSlider) {
-      e.preventDefault();
-      handleSliderNav(1);
-      return;
-    }
-
-    const dotBtn = e.target.closest('.slider-dot');
-    if (dotBtn && dotBtn.dataset.slideIndex !== undefined) {
-      e.preventDefault();
-      handleSliderGoTo(parseInt(dotBtn.dataset.slideIndex, 10));
       return;
     }
   });
@@ -235,183 +197,6 @@ function initNavbarScroll() {
   }, { passive: true });
 }
 
-let sliderCurrentIndex = 0;
-
-function initTestimonialSlider() {
-  const track = document.getElementById('testimonialTrack');
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const dotsContainer = document.getElementById('sliderDots');
-
-  if (!track || !slides.length) return;
-
-  sliderCurrentIndex = 0;
-  track.style.transform = 'translateX(0%)';
-
-  if (dotsContainer) {
-    dotsContainer.innerHTML = '';
-    slides.forEach((_, i) => {
-      const dot = document.createElement('span');
-      dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
-      dot.dataset.slideIndex = String(i);
-      dotsContainer.appendChild(dot);
-    });
-  }
-
-  startSliderAuto();
-}
-
-function startSliderAuto() {
-  if (sliderAutoTimer) clearInterval(sliderAutoTimer);
-  sliderAutoTimer = setInterval(() => {
-    handleSliderNav(1);
-  }, 5500);
-}
-
-function handleSliderNav(direction) {
-  const track = document.getElementById('testimonialTrack');
-  const slides = document.querySelectorAll('.testimonial-slide');
-  if (!track || !slides.length) return;
-
-  sliderCurrentIndex = (sliderCurrentIndex + direction + slides.length) % slides.length;
-  updateSliderView();
-  startSliderAuto();
-}
-
-function handleSliderGoTo(index) {
-  const track = document.getElementById('testimonialTrack');
-  const slides = document.querySelectorAll('.testimonial-slide');
-  if (!track || !slides.length) return;
-
-  sliderCurrentIndex = (index + slides.length) % slides.length;
-  updateSliderView();
-  startSliderAuto();
-}
-
-function updateSliderView() {
-  const track = document.getElementById('testimonialTrack');
-  const dotsContainer = document.getElementById('sliderDots');
-  if (!track) return;
-
-  track.style.transform = `translateX(-${sliderCurrentIndex * 100}%)`;
-
-  if (dotsContainer) {
-    const dots = dotsContainer.querySelectorAll('.slider-dot');
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === sliderCurrentIndex);
-    });
-  }
-}
-
-const inspectorData = {
-  combat: {
-    title: 'Combat & Rotations Detection',
-    desc: 'Pinpoint precision heuristics targeting Killaura, AimAssist, Hitbox Expansion, and Reach modifications with zero false bans.',
-    checks: [
-      'Raycast Reach (3.00m bounding box constraint)',
-      'Gaussian rotation curve analysis (SmoothAim & Snapping)',
-      'Autoclicker consistency (Kurtosis & Standard Deviation)',
-      'Criticals & FastBow packet timing verification'
-    ],
-    status: 'VIOLATION DETECTED',
-    statusColor: '#ef4444',
-    g1: { label: 'Reach Distance', val: '3.41m / 3.00m', width: '92%', danger: true },
-    g2: { label: 'Rotation Snap Angle', val: '86.4° / 15.0°', width: '85%', danger: true },
-    g3: { label: 'CPS Consistency', val: '0.12 (Macro)', width: '95%', danger: true }
-  },
-  movement: {
-    title: 'Vanilla Physics Simulation',
-    desc: 'Real-time client simulation comparing player packets with Minecraft vanilla physics equations (friction, inertia, web slowdown, ice).',
-    checks: [
-      'Vanilla Motion Simulation (Speed, Strafe, BHop)',
-      'Ground Spoof & NoFall packet validation',
-      'Flight & Glide hover-time acceleration check',
-      'Scaffold yaw/pitch placement vector verification'
-    ],
-    status: 'PACKET INTERCEPTED',
-    statusColor: '#f59e0b',
-    g1: { label: 'Velocity deltaXZ', val: '0.62 / 0.36 max', width: '88%', danger: true },
-    g2: { label: 'Air Ticks (Fly)', val: '38 ticks off-ground', width: '78%', danger: true },
-    g3: { label: 'Pitch Consistency', val: '79.2° (Exact Scaffold)', width: '90%', danger: true }
-  },
-  packet: {
-    title: 'Packet & Protocol Shield',
-    desc: 'Inspects low-level protocol flow to catch client packet spoofing, disablers, timer exploits, and crash exploits before the main thread.',
-    checks: [
-      'Timer rate analysis (20.0 TPS lock)',
-      'PingSpoof packet sequencing verification',
-      'Invalid Handshake, BookExploit & Crash prevention',
-      'FastBreak, FastPlace & Illegal block interaction'
-    ],
-    status: 'BLOCKED & SECURED',
-    statusColor: '#38bdf8',
-    g1: { label: 'Packet Rate', val: '24.8 pkts/sec (1.24x)', width: '74%', danger: true },
-    g2: { label: 'Ping Drift', val: '0.2ms stddev (Spoofed)', width: '84%', danger: true },
-    g3: { label: 'Protocol Anomaly Score', val: '0.00ms Tick Delay', width: '15%', danger: false }
-  }
-};
-
-function initInspectorDemo() {
-
-}
-
-function handleInspectorTabClick(tab) {
-  const tabs = document.querySelectorAll('.inspector-tab');
-  const infoTitle = document.getElementById('inspectorTitle');
-  const infoDesc = document.getElementById('inspectorDesc');
-  const checksList = document.getElementById('inspectorChecks');
-  const statusBadge = document.getElementById('inspectorStatus');
-  const bar1 = document.getElementById('gaugeBar1');
-  const bar2 = document.getElementById('gaugeBar2');
-  const bar3 = document.getElementById('gaugeBar3');
-  const label1 = document.getElementById('gaugeVal1');
-  const label2 = document.getElementById('gaugeVal2');
-  const label3 = document.getElementById('gaugeVal3');
-
-  if (!infoTitle) return;
-
-  tabs.forEach(t => t.classList.remove('active'));
-  tab.classList.add('active');
-
-  const category = tab.getAttribute('data-category');
-  const data = inspectorData[category];
-  if (!data) return;
-
-  infoTitle.textContent = data.title;
-  infoDesc.textContent = data.desc;
-
-  if (checksList) {
-    checksList.innerHTML = data.checks.map(c => `
-      <li>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        ${c}
-      </li>
-    `).join('');
-  }
-
-  if (statusBadge) {
-    statusBadge.textContent = data.status;
-    statusBadge.style.color = data.statusColor;
-  }
-
-  if (bar1 && label1) {
-    bar1.style.width = data.g1.width;
-    bar1.className = 'gauge-bar-fill' + (data.g1.danger ? ' danger' : '');
-    label1.textContent = data.g1.val;
-  }
-  if (bar2 && label2) {
-    bar2.style.width = data.g2.width;
-    bar2.className = 'gauge-bar-fill' + (data.g2.danger ? ' danger' : '');
-    label2.textContent = data.g2.val;
-  }
-  if (bar3 && label3) {
-    bar3.style.width = data.g3.width;
-    bar3.className = 'gauge-bar-fill' + (data.g3.danger ? ' danger' : '');
-    label3.textContent = data.g3.val;
-  }
-}
-
 function handleCopyServerIP() {
   const ipTextEl = document.getElementById('serverIpText');
   const toast = document.getElementById('toastNotice');
@@ -449,21 +234,6 @@ function handleCopyServerIP() {
       toast.classList.remove('show');
     }, 2800);
   }
-}
-
-function initBlurControl() {
-  const blurSlider = document.getElementById('blurRange');
-  const blurValueText = document.getElementById('blurValue');
-  const heroOverlay = document.querySelector('.hero-blur-overlay');
-
-  if (!blurSlider || !heroOverlay || blurSlider.dataset.bound === 'true') return;
-  blurSlider.dataset.bound = 'true';
-
-  blurSlider.addEventListener('input', (e) => {
-    const val = e.target.value;
-    document.documentElement.style.setProperty('--hero-blur-amount', `${val}px`);
-    if (blurValueText) blurValueText.textContent = `${val}px`;
-  });
 }
 
 function initHeroCanvas() {
@@ -573,7 +343,7 @@ function initTelemetryStream() {
     { type: 'ACTION', text: 'Sanction -> Dispatched silent freeze & Discord webhook', class: 'term-action' },
     { type: 'SCAN', text: 'Timer.A (tick_speed=1.002, jitter=0.001) -> Stable', class: 'term-safe' },
     { type: 'FLAG', text: 'Speed.B (friction=0.982, ground_spoof=true) VL: 15 -> Setback', class: 'term-flag' },
-    { type: 'SCAN', text: 'FastBreak.B (hardness=1.5, ticks=32) -> Legal block interaction', class: 'term-safe' },
+    { type: 'FAST', text: 'FastBreak.B (hardness=1.5, ticks=32) -> Legal block interaction', class: 'term-safe' },
     { type: 'FLAG', text: 'Autoclicker.CPS (cps=24.2, stddev=0.18) -> Macro detected', class: 'term-flag' }
   ];
 
@@ -606,55 +376,21 @@ function initTelemetryStream() {
   telemetryTimer = setInterval(addLogLine, 2400);
 }
 
-function initCounters() {
-  const metricElements = document.querySelectorAll('.metric-number[data-target]');
-  if (!metricElements.length) return;
+function initHeroVideo() {
+  const video = document.querySelector('.hero-bg-video');
+  if (!video) return;
 
-  if (!('IntersectionObserver' in window)) {
-    metricElements.forEach(el => {
-      const target = el.getAttribute('data-target');
-      const prefix = el.getAttribute('data-prefix') || '';
-      const suffix = el.getAttribute('data-suffix') || '';
-      el.textContent = `${prefix}${target}${suffix}`;
+  video.muted = true;
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      const startOnGesture = () => {
+        video.play();
+        window.removeEventListener('pointerdown', startOnGesture);
+        window.removeEventListener('keydown', startOnGesture);
+      };
+      window.addEventListener('pointerdown', startOnGesture, { once: true });
+      window.addEventListener('keydown', startOnGesture, { once: true });
     });
-    return;
   }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseFloat(el.getAttribute('data-target'));
-        const prefix = el.getAttribute('data-prefix') || '';
-        const suffix = el.getAttribute('data-suffix') || '';
-        const isDecimal = String(target).includes('.');
-        const duration = 1800;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const easeOut = 1 - Math.pow(1 - progress, 3);
-          const currentVal = target * easeOut;
-
-          if (isDecimal) {
-            el.textContent = `${prefix}${currentVal.toFixed(1)}${suffix}`;
-          } else {
-            el.textContent = `${prefix}${Math.floor(currentVal).toLocaleString()}${suffix}`;
-          }
-
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-          } else {
-            el.textContent = `${prefix}${target}${suffix}`;
-          }
-        }
-
-        requestAnimationFrame(updateCounter);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.25 });
-
-  metricElements.forEach(el => observer.observe(el));
 }
