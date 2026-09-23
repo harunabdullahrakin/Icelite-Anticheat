@@ -6,9 +6,9 @@
   <title>Icelite Anticheat — Live Minecraft Protection &amp; Statistics</title>
   <meta name="description" content="Live protection with statistics for your Minecraft SMP, server, and minigames. Zero client mods, zero lag, and instant packet interception.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <link rel="icon" type="image/png" href="assets/logo.png">
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/logo.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,9 @@
   <header class="nav-wrapper">
     <nav class="navbar" aria-label="Main Navigation">
       <a href="index.html" class="brand" title="Icelite Anticheat">
-        <img src="assets/logo.png" onerror="this.onerror=null; this.src='assets/logo.svg';" alt="Icelite Logo" class="brand-logo-img">
+        <div class="brand-logo-wrap">
+          <img src="assets/logo.png" onerror="this.onerror=null; this.src='assets/logo.svg';" alt="Icelite Logo" class="brand-logo-img">
+        </div>
         <div class="brand-text">
           <span class="brand-name">Icelite</span>
         </div>
@@ -256,138 +258,260 @@
 
       <div class="pricing-grid">
         <div class="pricing-card reveal slide-left">
+          <div class="starter-badge">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            <span>Starter</span>
+          </div>
           <div class="pricing-header">
-            <h3 class="plan-name">Small server</h3>
+            <div class="plan-title-row">
+              <h3 class="plan-name">Small server</h3>
+              <div class="plan-pill-tag">SMP</div>
+            </div>
             <p class="plan-desc">Perfect for small servers with under 75 players online.</p>
             <div class="plan-price">
               <span class="price-currency">&euro;</span>
               <span class="price-val">16</span>
               <span class="price-period">/month</span>
             </div>
+            <div class="plan-billing-note">Billed quarterly &bull; Instant activation</div>
           </div>
-          <ul class="plan-features">
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>75</strong> total players online</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>5</strong> server instances</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>3</strong> unique hardware IDs</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>ALL</strong> checks included</span>
-            </li>
-          </ul>
+          <div class="plan-divider"></div>
+          <div class="plan-features">
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>75</strong> total players online</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>5</strong> server instances</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>3</strong> unique hardware IDs</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text"><strong>ALL</strong> checks included</div>
+            </div>
+          </div>
           <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">Subscribe</a>
+            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">
+              <span>Subscribe</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
           </div>
         </div>
 
         <div class="pricing-card popular reveal slide-scale delay-1">
-          <div class="popular-badge">Most Popular</div>
+          <div class="popular-badge">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Most Popular</span>
+          </div>
           <div class="pricing-header">
-            <h3 class="plan-name">Medium server</h3>
+            <div class="plan-title-row">
+              <h3 class="plan-name">Medium server</h3>
+              <div class="plan-pill-tag pop">GROWTH</div>
+            </div>
             <p class="plan-desc">Great for established servers and growing networks.</p>
             <div class="plan-price">
               <span class="price-currency">&euro;</span>
               <span class="price-val">30</span>
               <span class="price-period">/month</span>
             </div>
+            <div class="plan-billing-note">Monthly billing &bull; Priority setup</div>
           </div>
-          <ul class="plan-features">
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>180</strong> total players online</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>25</strong> server instances</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>5</strong> unique hardware IDs</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>ALL</strong> checks included</span>
-            </li>
-          </ul>
+          <div class="plan-divider"></div>
+          <div class="plan-features">
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>180</strong> total players online</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>25</strong> server instances</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>5</strong> unique hardware IDs</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text"><strong>ALL</strong> checks included</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Priority Discord support queue</div>
+            </div>
+          </div>
           <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan btn-plan-popular">Subscribe</a>
+            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan btn-plan-popular">
+              <span>Subscribe</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
           </div>
         </div>
 
         <div class="pricing-card reveal slide-right delay-2">
+          <div class="pro-badge">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>Network</span>
+          </div>
           <div class="pricing-header">
-            <h3 class="plan-name">Large server</h3>
+            <div class="plan-title-row">
+              <h3 class="plan-name">Large server</h3>
+              <div class="plan-pill-tag pro">SCALE</div>
+            </div>
             <p class="plan-desc">Great for large servers and minigame networks.</p>
             <div class="plan-price">
               <span class="price-currency">&euro;</span>
               <span class="price-val">49</span>
               <span class="price-period">/month</span>
             </div>
+            <div class="plan-billing-note">Monthly billing &bull; High volume</div>
           </div>
-          <ul class="plan-features">
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>450</strong> total players online</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>Unlimited</strong> server instances</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Up to <strong>15</strong> unique hardware IDs</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>ALL</strong> checks included</span>
-            </li>
-          </ul>
+          <div class="plan-divider"></div>
+          <div class="plan-features">
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>450</strong> total players online</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text"><strong>Unlimited</strong> server instances</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Up to <strong>15</strong> unique hardware IDs</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text"><strong>ALL</strong> checks included</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Dedicated configuration tuning</div>
+            </div>
+          </div>
           <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">Subscribe</a>
+            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">
+              <span>Subscribe</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
           </div>
         </div>
 
         <div class="pricing-card enterprise reveal slide-right delay-3">
-          <div class="custom-badge">Custom Solution</div>
+          <div class="custom-badge">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            <span>Custom Solution</span>
+          </div>
           <div class="pricing-header">
-            <h3 class="plan-name">Enterprise</h3>
+            <div class="plan-title-row">
+              <h3 class="plan-name">Enterprise</h3>
+              <div class="plan-pill-tag ent">VIP</div>
+            </div>
             <p class="plan-desc">Tailored solutions for large networks with custom requirements.</p>
             <div class="plan-price">
-              <span class="price-val" style="font-size: 2.1rem;">Custom</span>
+              <span class="price-val" style="font-size: 2.2rem;">Custom</span>
+            </div>
+            <div class="plan-billing-note">Tailored contract &bull; Custom SLA</div>
+          </div>
+          <div class="plan-divider"></div>
+          <div class="plan-features">
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text"><strong>Unlimited</strong> players online</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text"><strong>Unlimited</strong> server instances</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text"><strong>Unlimited</strong> unique hardware IDs</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Dedicated 24/7 priority support</div>
+            </div>
+            <div class="plan-feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="feature-text">Custom heuristic profiling &amp; checks</div>
             </div>
           </div>
-          <ul class="plan-features">
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>Unlimited</strong> players online</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>Unlimited</strong> server instances</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>Unlimited</strong> unique hardware IDs</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Dedicated 24/7 priority support</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span><strong>ALL</strong> checks included</span>
-            </li>
-          </ul>
           <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">Contact Sales</a>
+            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">
+              <span>Contact Sales</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-guarantees reveal slide-scale">
+        <div class="guarantee-item">
+          <div class="guarantee-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+          </div>
+          <div class="guarantee-content">
+            <strong>Instant Deployment</strong>
+            <span>Automated license activation via Discord in seconds</span>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="guarantee-content">
+            <strong>Zero False Bans</strong>
+            <span>Strict multi-packet heuristic validation guarantee</span>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div class="guarantee-content">
+            <strong>Continuous Updates</strong>
+            <span>Real-time signature defense for all new clients</span>
           </div>
         </div>
       </div>
