@@ -1,5 +1,4 @@
 let rotatorTimer = null;
-let telemetryTimer = null;
 let canvasAnimId = null;
 let isScrollBound = false;
 let isDelegationBound = false;
@@ -12,7 +11,6 @@ function initApp() {
   initScrollSlideAnimations();
   initNavbarScroll();
   initHeroCanvas();
-  initTelemetryStream();
   initHeroVideo();
 }
 
@@ -20,10 +18,6 @@ function cleanupTimers() {
   if (rotatorTimer) {
     clearInterval(rotatorTimer);
     rotatorTimer = null;
-  }
-  if (telemetryTimer) {
-    clearInterval(telemetryTimer);
-    telemetryTimer = null;
   }
   if (canvasAnimId) {
     cancelAnimationFrame(canvasAnimId);
@@ -200,7 +194,7 @@ function initNavbarScroll() {
 function handleCopyServerIP() {
   const ipTextEl = document.getElementById('serverIpText');
   const toast = document.getElementById('toastNotice');
-  const serverIP = ipTextEl ? ipTextEl.textContent.trim() : 'mc.icelite.gg';
+  const serverIP = ipTextEl ? ipTextEl.textContent.trim() : 'icelite.top';
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(serverIP)
@@ -324,56 +318,35 @@ function initHeroCanvas() {
       }
     }
 
+    const time = Date.now() * 0.001;
+    ctx.save();
+    ctx.lineWidth = 1.5;
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = '#00f2fe';
+
+    ctx.beginPath();
+    for (let x = 0; x <= width; x += 10) {
+      const y = height * 0.58 + Math.sin(x * 0.003 + time * 1.3) * 38 + Math.cos(x * 0.0016 + time * 0.7) * 22;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = 'rgba(0, 242, 254, 0.16)';
+    ctx.stroke();
+
+    ctx.beginPath();
+    for (let x = 0; x <= width; x += 10) {
+      const y = height * 0.68 + Math.sin(x * 0.0024 - time * 0.95) * 44 + Math.cos(x * 0.0038 + time * 1.05) * 24;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.12)';
+    ctx.stroke();
+    ctx.restore();
+
     canvasAnimId = requestAnimationFrame(render);
   }
 
   render();
-}
-
-function initTelemetryStream() {
-  const terminalBody = document.getElementById('terminalLog');
-  if (!terminalBody) return;
-
-  const mockEvents = [
-    { type: 'SCAN', text: 'PacketPlayInFlying -> Player "PvP_Master" tick=20.0 (OK)', class: 'term-safe' },
-    { type: 'FLAG', text: 'Reach.A (distance=3.38m, max=3.00m, ping=22ms) -> CANCELED', class: 'term-flag' },
-    { type: 'SCAN', text: 'PacketPlayInPosition -> Player "ShadowCrafter" deltaY=0.42 (Normal)', class: 'term-safe' },
-    { type: 'FLAG', text: 'Killaura.Rotations (snap=74.3°, heuristic=99.2%) VL: 18/20', class: 'term-flag' },
-    { type: 'WARN', text: 'BadPackets.Order (sequence desync from 185.12.92.1) -> Suppressed', class: 'term-warn' },
-    { type: 'ACTION', text: 'Sanction -> Dispatched silent freeze & Discord webhook', class: 'term-action' },
-    { type: 'SCAN', text: 'Timer.A (tick_speed=1.002, jitter=0.001) -> Stable', class: 'term-safe' },
-    { type: 'FLAG', text: 'Speed.B (friction=0.982, ground_spoof=true) VL: 15 -> Setback', class: 'term-flag' },
-    { type: 'FAST', text: 'FastBreak.B (hardness=1.5, ticks=32) -> Legal block interaction', class: 'term-safe' },
-    { type: 'FLAG', text: 'Autoclicker.CPS (cps=24.2, stddev=0.18) -> Macro detected', class: 'term-flag' }
-  ];
-
-  let currentIndex = 0;
-
-  function addLogLine() {
-    const event = mockEvents[currentIndex % mockEvents.length];
-    currentIndex++;
-
-    const now = new Date();
-    const timeStr = now.toTimeString().split(' ')[0] + '.' + String(now.getMilliseconds()).padStart(3, '0');
-
-    const line = document.createElement('div');
-    line.className = 'terminal-line';
-    line.innerHTML = `
-      <span class="term-time">[${timeStr}]</span>
-      <span class="term-prefix">[ICELITE]</span>
-      <span class="${event.class}">${event.text}</span>
-    `;
-
-    terminalBody.appendChild(line);
-
-    if (terminalBody.children.length > 25) {
-      terminalBody.removeChild(terminalBody.children[0]);
-    }
-
-    terminalBody.scrollTop = terminalBody.scrollHeight;
-  }
-
-  telemetryTimer = setInterval(addLogLine, 2400);
 }
 
 function initHeroVideo() {

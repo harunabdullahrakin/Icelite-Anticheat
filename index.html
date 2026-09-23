@@ -10,7 +10,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.12/dist/turbo.es2017-umd.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -31,7 +31,6 @@
         <img src="assets/logo.png" onerror="this.onerror=null; this.src='assets/logo.svg';" alt="Icelite Logo" class="brand-logo-img">
         <div class="brand-text">
           <span class="brand-name">Icelite</span>
-          <span class="brand-tag">AC</span>
         </div>
       </a>
 
@@ -81,35 +80,15 @@
 
     <div class="container hero-content">
 
-      <div class="cobalt-server-card reveal slide-left">
-        <div class="server-info-left">
-          <span class="server-status-dot"></span>
-          <span class="server-ip-display" id="serverIpText">mc.icelite.gg</span>
-          <span class="server-players-badge">1,420 PLAYERS ONLINE</span>
-        </div>
-        <button class="btn-copy-ip" id="btnCopyIp" title="Click to copy server IP">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-          </svg>
-          <span>Copy Server IP</span>
-        </button>
-      </div>
-
-      <div class="hero-badge reveal">
-        <span class="badge-dot"></span>
-        <span>Icelite v3.4 &bull; 1.8.8 to 1.21+ &bull; Spigot, Paper &amp; Folia</span>
-      </div>
-
       <h1 class="hero-title reveal delay-1">
-        Live Protection with statistics for your<br>
+        Real-Time Protection with Live Statistics for Your<br>
         <span class="rotator-wrapper">
           <span class="rotating-word" id="rotatingWord">SMP</span>
         </span>
       </h1>
 
       <p class="hero-subtitle reveal delay-2">
-        Detect and eliminate cheaters in real-time. Zero client mods, zero lag spikes, and deterministic physics.
+        Enterprise-grade threat neutralization built for competitive Minecraft. Instant packet validation, zero client mods, and deterministic physics.
       </p>
 
       <div class="hero-cta-group reveal delay-3">
@@ -131,157 +110,14 @@
         </a>
       </div>
 
-      <div class="hero-terminal-wrapper reveal delay-4">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <span class="terminal-dot dot-red"></span>
-            <span class="terminal-dot dot-yellow"></span>
-            <span class="terminal-dot dot-green"></span>
-          </div>
-          <div class="terminal-title">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="4 17 10 11 4 5"></polyline>
-              <line x1="12" y1="19" x2="20" y2="19"></line>
-            </svg>
-            icelite // live-packet-feed
-          </div>
-          <span class="terminal-badge">ONLINE</span>
-        </div>
-        <div class="terminal-body" id="terminalLog">
-          <div class="terminal-line">
-            <span class="term-time">[SYSTEM]</span>
-            <span class="term-prefix">[ICELITE]</span>
-            <span class="term-safe">Engine active on 64 asynchronous worker threads.</span>
-          </div>
-          <div class="terminal-line">
-            <span class="term-time">[00:00:01]</span>
-            <span class="term-prefix">[PACKET-IN]</span>
-            <span>Handshake from client 192.168.1.42:25565 (v1.20.4)</span>
-          </div>
-          <div class="terminal-line">
-            <span class="term-time">[00:00:02]</span>
-            <span class="term-prefix">[PHYSICS]</span>
-            <span class="term-warn">Velocity mismatch: player 'KillauraGod' +0.42m/s delta</span>
-          </div>
-          <div class="terminal-line">
-            <span class="term-time">[00:00:02]</span>
-            <span class="term-prefix">[ACTION]</span>
-            <span class="term-action">Packet cancelled &bull; Teleport rollback applied &bull; VL: 15</span>
-          </div>
-          <div class="terminal-line">
-            <span class="term-time">[00:00:03]</span>
-            <span class="term-prefix">[RAYCAST]</span>
-            <span class="term-safe">Hitbox bounds checked &bull; Reach 2.87m &bull; Raycast valid</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <section class="trusted-section">
-    <div class="container">
-      <p class="trusted-title">Trusted by Leading Minecraft Networks</p>
-    </div>
-    <div class="marquee-wrapper">
-      <div class="marquee-track marquee-scroll-right">
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <span class="network-name">FrostPvP Network</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <span class="network-name">ColdWars SMP</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          </div>
-          <span class="network-name">VoxelCraft</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <span class="network-name">ViperMC</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="12 6 12 12 16 14"/></svg>
-          </div>
-          <span class="network-name">Hypixel Practice</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <span class="network-name">Minemen Club</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
-          </div>
-          <span class="network-name">PvP Land</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <span class="network-name">CoralMC</span>
-        </div>
-
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <span class="network-name">FrostPvP Network</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <span class="network-name">ColdWars SMP</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          </div>
-          <span class="network-name">VoxelCraft</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <span class="network-name">ViperMC</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="12 6 12 12 16 14"/></svg>
-          </div>
-          <span class="network-name">Hypixel Practice</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <span class="network-name">Minemen Club</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
-          </div>
-          <span class="network-name">PvP Land</span>
-        </div>
-        <div class="trusted-badge">
-          <div class="network-logo-box">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <span class="network-name">CoralMC</span>
-        </div>
-      </div>
+    <div class="hero-curves" aria-hidden="true">
+      <svg class="hero-curve-svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+        <path class="hero-curve-path wave-cyan" d="M0,60 C240,130, 480,-10, 720,60 C960,130, 1200,-10, 1440,60 L1440,180 L0,180 Z"></path>
+        <path class="hero-curve-path wave-blue" d="M0,90 C320,10, 560,160, 840,90 C1120,20, 1320,150, 1440,90 L1440,180 L0,180 Z"></path>
+        <path class="hero-curve-path wave-dark" d="M0,120 C280,70, 580,170, 880,120 C1180,70, 1360,150, 1440,120 L1440,180 L0,180 Z"></path>
+      </svg>
     </div>
   </section>
 
@@ -421,20 +257,6 @@
           <div class="bench-sub">Illegal reach hits never register</div>
         </div>
       </div>
-
-      <div style="margin-top: 40px;">
-        <h3 style="text-align: center; font-size: 1.1rem; color: var(--ice-200); margin-bottom: 6px;" class="reveal">Cheat Clients Neutralized by Icelite</h3>
-        <div class="clients-grid">
-          <div class="client-badge reveal"><div class="client-name">Vape v4</div><div class="client-status">Blocked</div></div>
-          <div class="client-badge reveal delay-1"><div class="client-name">Meteor</div><div class="client-status">Blocked</div></div>
-          <div class="client-badge reveal delay-1"><div class="client-name">LiquidBounce</div><div class="client-status">Blocked</div></div>
-          <div class="client-badge reveal delay-2"><div class="client-name">Rise 6</div><div class="client-status">Blocked</div></div>
-          <div class="client-badge reveal delay-2"><div class="client-name">Wurst</div><div class="client-status">Blocked</div></div>
-          <div class="client-badge reveal delay-3"><div class="client-name">Aristois</div><div class="client-status">Blocked</div></div>
-          <div class="client-badge reveal delay-3"><div class="client-name">Augustus</div><div class="client-status">Blocked</div></div>
-          <div class="client-badge reveal delay-4"><div class="client-name">RusherHack</div><div class="client-status">Blocked</div></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -543,11 +365,10 @@
             <img src="assets/logo.png" onerror="this.onerror=null; this.src='assets/logo.svg';" alt="Icelite Logo" class="brand-logo-img">
             <div class="brand-text">
               <span class="brand-name">Icelite</span>
-              <span class="brand-tag">AC</span>
             </div>
           </a>
           <p>
-            Definitive anticheat solution for Minecraft servers. Trusted and protecting communities since 2021.
+            Definitive anticheat solution for Minecraft servers. Built and protecting communities since 2026.
           </p>
         </div>
 
@@ -575,7 +396,7 @@
           <h5>Community</h5>
           <div class="footer-contact-item">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <a href="mailto:primary@icelite.gg">primary@icelite.gg</a>
+            <a href="mailto:primary@icelite.top">primary@icelite.top</a>
           </div>
           <div class="footer-contact-item">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
@@ -585,7 +406,7 @@
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2021 &ndash; 2026 Icelite Anticheat. All Rights Reserved.</div>
+        <div>&copy; 2026 Icelite Anticheat. All Rights Reserved.</div>
         <div class="footer-disclaimer">
           Icelite Anticheat is not an official Minecraft product. We are not approved by or affiliated with Mojang or Microsoft.
         </div>
