@@ -3,690 +3,461 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Icelite Anticheat — Live Minecraft Protection &amp; Statistics</title>
-  <meta name="description" content="Live protection with statistics for your Minecraft SMP, server, and minigames. Zero client mods, zero lag, and instant packet interception.">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Icelite Anticheat — Minecraft Server Protection</title>
+  <meta name="description" content="Icelite is a modern server-side Minecraft anticheat built for accurate, low-latency protection.">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
   <link rel="icon" type="image/svg+xml" sizes="any" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/logo.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.12/dist/turbo.es2017-umd.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="bg-ambient-layer" aria-hidden="true">
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
-    <div class="ambient-orb orb-3"></div>
-  </div>
-
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="edge-dots edge-dots-left" aria-hidden="true"></div>
+  <div class="edge-dots edge-dots-right" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="astro-cloud cloud-one" aria-hidden="true"></div>
+  <div class="astro-cloud cloud-two" aria-hidden="true"></div>
+  <div class="astro-cloud cloud-three" aria-hidden="true"></div>
   <div id="toastNotice" class="toast-notice" role="alert"></div>
 
   <header class="nav-wrapper">
     <nav class="navbar" aria-label="Main Navigation">
-      <a href="index.html" class="brand" title="Icelite Anticheat">
-        <div class="brand-logo-wrap">
-          <img src="assets/logo.png" onerror="this.onerror=null; this.src='assets/logo.svg';" alt="Icelite Logo" class="brand-logo-img">
-        </div>
-        <div class="brand-text">
-          <span class="brand-name">Icelite</span>
-        </div>
+      <a href="index.html" class="brand" aria-label="Icelite home">
+        <span class="brand-name">Icelite Anticheat</span>
       </a>
-
-      <ul class="nav-links">
-        <li><a href="index.html" class="nav-link active">Home</a></li>
-        <li><a href="solution.html" class="nav-link">Solution</a></li>
-        <li><a href="#features" class="nav-link">Features</a></li>
-        <li><a href="#benchmarks" class="nav-link">Benchmarks</a></li>
-        <li><a href="#pricing" class="nav-link">Pricing</a></li>
-        <li><a href="about.html" class="nav-link">About Us</a></li>
-        <li><a href="faq.html" class="nav-link">FAQ</a></li>
-      </ul>
-
+      <div class="nav-links">
+        <a href="solution.html" class="nav-link">Solution</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </div>
       <div class="nav-actions">
-
-        <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-discord" title="Join Official Discord">
-          <svg viewBox="0 0 24 24">
-            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-          </svg>
-          <span>Discord</span>
-        </a>
-        <a href="#get-started" class="btn-primary">
-          <span>Get Started</span>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-        <button class="mobile-toggle" aria-label="Toggle Menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
+        <a class="nav-discord" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Discord</a>
+        <a class="nav-cta" href="#get-started">Get Started <span>›</span></a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
       </div>
     </nav>
   </header>
 
-  <section class="hero-section">
-    <div class="hero-video-container">
-      <canvas id="iceGridCanvas"></canvas>
-      <video class="hero-bg-video" autoplay muted loop playsinline poster="assets/hero-bg.gif">
-        <source src="assets/hero.mp4" type="video/mp4">
-      </video>
-    </div>
-
-    <div class="hero-blur-overlay"></div>
-
-    <div class="container hero-content">
-
-      <h1 class="hero-title reveal delay-1">
-        Real-Time Protection with Live Statistics for Your<br>
-        <span class="rotator-wrapper">
-          <span class="rotating-word" id="rotatingWord">SMP</span>
-        </span>
-      </h1>
-
-      <p class="hero-subtitle reveal delay-2">
-        Enterprise-grade threat neutralization built for competitive Minecraft. Instant packet validation, zero client mods, and deterministic physics.
-      </p>
-
-      <div class="hero-cta-group reveal delay-3">
-        <a href="#get-started" class="btn-primary">
-          <span>Get Started</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </a>
-        <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-discord">
-          <svg viewBox="0 0 24 24" width="16" height="16">
-            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-          </svg>
-          <span>Join Discord</span>
-        </a>
-        <a href="#features" class="btn-secondary">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          <span>Explore Features</span>
-        </a>
+  <main>
+    <section class="hero-section">
+      <div class="hero-media" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-bg.gif">
+          <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-blur"></div>
+        <div class="hero-vignette"></div>
       </div>
-
-    </div>
-
-    <div class="hero-curves" aria-hidden="true">
-      <svg class="hero-curve-svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
-        <path class="hero-curve-path wave-cyan" d="M0,60 C240,130, 480,-10, 720,60 C960,130, 1200,-10, 1440,60 L1440,180 L0,180 Z"></path>
-        <path class="hero-curve-path wave-blue" d="M0,90 C320,10, 560,160, 840,90 C1120,20, 1320,150, 1440,90 L1440,180 L0,180 Z"></path>
-        <path class="hero-curve-path wave-dark" d="M0,120 C280,70, 580,170, 880,120 C1180,70, 1360,150, 1440,120 L1440,180 L0,180 Z"></path>
-      </svg>
-    </div>
-  </section>
-
-  <section id="features" class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Core Features</span>
-        <h2 class="section-title">Built for Performance</h2>
-        <p class="section-subtitle">Low Latency &bull; Accurate &bull; Always Improving</p>
+      <div class="hero-content">
+        <h1 class="hero-title reveal">Icelite reads the game.<br><span class="hero-accent"><span id="rotatingWord">Not just the packets.</span></span></h1>
+        <p class="hero-subtitle reveal delay-1">Server-side detection built around combat, movement, networking, and world interaction — without putting anything on the player’s machine.</p>
+        <div class="hero-buttons reveal delay-2">
+          <a class="hero-primary" href="#get-started">Get Started <span>›</span></a>
+          <a class="hero-secondary" href="solution.html">Learn More <span>›</span></a>
+        </div>
       </div>
+      <div class="hero-fade"></div>
+    </section>
 
-      <div class="features-grid">
-
-        <div class="feature-card reveal slide-left">
-          <div class="feature-header-row">
-            <div class="feature-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
-            <h3 class="feature-card-title">Server-side &amp; Cloud</h3>
-          </div>
-          <p class="feature-card-desc">
-            Privacy-friendly and 100% server-side. Heavy analytics are offloaded to our SaaS cloud edge, keeping TPS locked at 20.0.
-          </p>
-          <div class="feature-pill-list">
-            <span class="feature-pill">Zero Client Mod</span>
-            <span class="feature-pill">Cloud Offload</span>
-          </div>
-        </div>
-
-        <div class="feature-card reveal slide-right delay-2">
-          <div class="feature-header-row">
-            <div class="feature-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-              </svg>
-            </div>
-            <h3 class="feature-card-title">Real-Time Analysis</h3>
-          </div>
-          <p class="feature-card-desc">
-            Instant packet analysis stops cheaters before damage spreads. Cancels illegal reaches and rotations in under 0.02ms.
-          </p>
-          <div class="feature-pill-list">
-            <span class="feature-pill">&lt; 0.02ms Latency</span>
-            <span class="feature-pill">Instant Cancel</span>
-          </div>
-        </div>
-
-        <div class="feature-card reveal slide-left delay-1">
-          <div class="feature-header-row">
-            <div class="feature-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-              </svg>
-            </div>
-            <h3 class="feature-card-title">Scales With You</h3>
-          </div>
-          <p class="feature-card-desc">
-            From single survival SMPs to massive multi-region proxy networks. Scales with your traffic spikes with zero rearchitecture.
-          </p>
-          <div class="feature-pill-list">
-            <span class="feature-pill">Bungee &amp; Velocity</span>
-            <span class="feature-pill">Multi-Server</span>
-          </div>
-        </div>
-
-        <div class="feature-card reveal slide-scale delay-2">
-          <div class="feature-header-row">
-            <div class="feature-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-            </div>
-            <h3 class="feature-card-title">Vanilla Physics</h3>
-          </div>
-          <p class="feature-card-desc">
-            Exact physics simulation for friction, cobwebs, slime, and knockback. Eliminates false flags for high-ping combos.
-          </p>
-          <div class="feature-pill-list">
-            <span class="feature-pill">Zero False Bans</span>
-            <span class="feature-pill">Knockback Safe</span>
+    <section class="compatibility-strip reveal">
+      <div class="container">
+        <p class="strip-label">Built for Minecraft</p>
+        <div class="compatibility-marquee" aria-label="Supported Minecraft platforms">
+          <div class="compatibility-track">
+            <span>Paper</span><span>Spigot</span><span>Folia</span><span>Purpur</span><span>ViaVersion</span><span>PacketEvents</span><span>Floodgate</span>
+            <span>Paper</span><span>Spigot</span><span>Folia</span><span>Purpur</span><span>ViaVersion</span><span>PacketEvents</span><span>Floodgate</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="benchmarks" class="section" style="background: rgba(8, 14, 34, 0.45);">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Performance Benchmarks</span>
-        <h2 class="section-title">Tested Under Extreme Load</h2>
-        <p class="section-subtitle">Real telemetry measured on an active 150-player PvP Paper server.</p>
-      </div>
+    <section id="features" class="astro-section features-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Why Icelite</p>
+          <h2>Engineered for real gameplay</h2>
+          <p>Low overhead · Context-aware · Continuously refined</p>
+        </div>
+        <div class="astro-feature-grid">
+          <article class="astro-feature reveal slide-left"><div class="feature-number">01</div><h3>Server-side &amp; Privacy-focused</h3><p>Icelite analyzes gameplay from the server side, so players do not need a client-side anticheat installed on their machines.</p></article>
+          <article class="astro-feature reveal delay-1"><div class="feature-number">02</div><h3>Adaptive Detection</h3><p>Multiple signals are evaluated together to distinguish unusual gameplay from legitimate player behavior.</p></article>
+          <article class="astro-feature reveal delay-2"><div class="feature-number">03</div><h3>Real-time Analysis</h3><p>Live packet, movement, combat, and interaction signals can be evaluated as gameplay happens.</p></article>
+          <article class="astro-feature reveal slide-right delay-3"><div class="feature-number">04</div><h3>Scales With Your Network</h3><p>Designed to fit small servers and growing Minecraft networks without unnecessary operational overhead.</p></article>
+        </div>
 
-      <div class="benchmark-grid">
-        <div class="benchmark-card reveal slide-left">
-          <div class="bench-val">&lt; 0.4%</div>
-          <div class="bench-title">CPU Overhead</div>
-          <div class="bench-sub">Main thread impact is imperceptible</div>
+        <div class="detection-heading section-heading reveal">
+          <p class="eyebrow">Detection Coverage</p>
+          <h2>Built around how Minecraft actually works</h2>
+          <p>Focused server-side analysis across combat, movement, networking, and world interaction.</p>
         </div>
-        <div class="benchmark-card reveal slide-scale delay-1">
-          <div class="bench-val">~42 MB</div>
-          <div class="bench-title">Memory Footprint</div>
-          <div class="bench-sub">Ultra-efficient off-heap Netty buffers</div>
-        </div>
-        <div class="benchmark-card reveal slide-scale delay-2">
-          <div class="bench-val">0.02 ms</div>
-          <div class="bench-title">Tick Latency</div>
-          <div class="bench-sub">Instant packet evaluation</div>
-        </div>
-        <div class="benchmark-card reveal slide-right delay-3">
-          <div class="bench-val">&lt; 1 Tick</div>
-          <div class="bench-title">Cancel Response</div>
-          <div class="bench-sub">Illegal reach hits never register</div>
+        <div class="detection-grid">
+          <article class="detection-card reveal slide-left"><div class="feature-number">01</div><h3>Combat</h3><p>Aim geometry, reach, click timing, velocity response, target changes, and delayed interactions are analyzed together.</p></article>
+          <article class="detection-card reveal delay-1"><div class="feature-number">02</div><h3>Movement</h3><p>Tick simulation, collision, ground state, fluids, velocity response, and timer behavior provide movement context.</p></article>
+          <article class="detection-card reveal delay-2"><div class="feature-number">03</div><h3>Network</h3><p>Transactions, acknowledgement timing, packet withholding, blink-like behavior, and burst patterns are monitored.</p></article>
+          <article class="detection-card reveal slide-right delay-3"><div class="feature-number">04</div><h3>World</h3><p>Placement geometry, bridging patterns, GUI movement, ghost-hand behavior, and packet ordering are examined.</p></article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="pricing" class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Pricing</span>
-        <h2 class="section-title">Choose Your Plan</h2>
-        <p class="section-subtitle">Select the perfect plan for your server and unlock the full potential of Icelite.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <div class="pricing-card reveal slide-left">
-          <div class="starter-badge">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
-            <span>Starter</span>
-          </div>
-          <div class="pricing-header">
-            <div class="plan-title-row">
-              <h3 class="plan-name">Small server</h3>
-              <div class="plan-pill-tag">SMP</div>
-            </div>
-            <p class="plan-desc">Perfect for small servers with under 75 players online.</p>
-            <div class="plan-price">
-              <span class="price-currency">&euro;</span>
-              <span class="price-val">16</span>
-              <span class="price-period">/month</span>
-            </div>
-            <div class="plan-billing-note">Billed quarterly &bull; Instant activation</div>
-          </div>
-          <div class="plan-divider"></div>
-          <div class="plan-features">
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>75</strong> total players online</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>5</strong> server instances</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>3</strong> unique hardware IDs</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text"><strong>ALL</strong> checks included</div>
-            </div>
-          </div>
-          <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">
-              <span>Subscribe</span>
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </a>
-          </div>
+    <section class="impact-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Why It Matters</p>
+          <h2>The cost of cheaters</h2>
+          <p>The impact cheating has on Minecraft communities and server owners.</p>
         </div>
-
-        <div class="pricing-card popular reveal slide-scale delay-1">
-          <div class="popular-badge">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <span>Most Popular</span>
-          </div>
-          <div class="pricing-header">
-            <div class="plan-title-row">
-              <h3 class="plan-name">Medium server</h3>
-              <div class="plan-pill-tag pop">GROWTH</div>
-            </div>
-            <p class="plan-desc">Great for established servers and growing networks.</p>
-            <div class="plan-price">
-              <span class="price-currency">&euro;</span>
-              <span class="price-val">30</span>
-              <span class="price-period">/month</span>
-            </div>
-            <div class="plan-billing-note">Monthly billing &bull; Priority setup</div>
-          </div>
-          <div class="plan-divider"></div>
-          <div class="plan-features">
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>180</strong> total players online</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>25</strong> server instances</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>5</strong> unique hardware IDs</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text"><strong>ALL</strong> checks included</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Priority Discord support queue</div>
-            </div>
-          </div>
-          <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan btn-plan-popular">
-              <span>Subscribe</span>
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="pricing-card reveal slide-right delay-2">
-          <div class="pro-badge">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            <span>Network</span>
-          </div>
-          <div class="pricing-header">
-            <div class="plan-title-row">
-              <h3 class="plan-name">Large server</h3>
-              <div class="plan-pill-tag pro">SCALE</div>
-            </div>
-            <p class="plan-desc">Great for large servers and minigame networks.</p>
-            <div class="plan-price">
-              <span class="price-currency">&euro;</span>
-              <span class="price-val">49</span>
-              <span class="price-period">/month</span>
-            </div>
-            <div class="plan-billing-note">Monthly billing &bull; High volume</div>
-          </div>
-          <div class="plan-divider"></div>
-          <div class="plan-features">
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>450</strong> total players online</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text"><strong>Unlimited</strong> server instances</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Up to <strong>15</strong> unique hardware IDs</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text"><strong>ALL</strong> checks included</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Dedicated configuration tuning</div>
-            </div>
-          </div>
-          <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">
-              <span>Subscribe</span>
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="pricing-card enterprise reveal slide-right delay-3">
-          <div class="custom-badge">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-            <span>Custom Solution</span>
-          </div>
-          <div class="pricing-header">
-            <div class="plan-title-row">
-              <h3 class="plan-name">Enterprise</h3>
-              <div class="plan-pill-tag ent">VIP</div>
-            </div>
-            <p class="plan-desc">Tailored solutions for large networks with custom requirements.</p>
-            <div class="plan-price">
-              <span class="price-val" style="font-size: 2.2rem;">Custom</span>
-            </div>
-            <div class="plan-billing-note">Tailored contract &bull; Custom SLA</div>
-          </div>
-          <div class="plan-divider"></div>
-          <div class="plan-features">
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text"><strong>Unlimited</strong> players online</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text"><strong>Unlimited</strong> server instances</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text"><strong>Unlimited</strong> unique hardware IDs</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Dedicated 24/7 priority support</div>
-            </div>
-            <div class="plan-feature">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="feature-text">Custom heuristic profiling &amp; checks</div>
-            </div>
-          </div>
-          <div class="plan-cta">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-plan">
-              <span>Contact Sales</span>
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </a>
-          </div>
+        <div class="impact-grid">
+          <div class="impact-item reveal"><span>01</span><h3>Eroded player trust</h3></div>
+          <div class="impact-item reveal delay-1"><span>02</span><h3>Shrinking player base</h3></div>
+          <div class="impact-item reveal delay-2"><span>03</span><h3>Economic disruption</h3></div>
+          <div class="impact-item reveal delay-3"><span>04</span><h3>Shortened server lifespan</h3></div>
+          <div class="impact-item reveal"><span>05</span><h3>Increased development cost</h3></div>
+          <div class="impact-item reveal delay-1"><span>06</span><h3>Server reputation declines</h3></div>
+          <div class="impact-item reveal delay-2"><span>07</span><h3>Elevated security threats</h3></div>
+          <div class="impact-item reveal delay-3"><span>08</span><h3>Server instability</h3></div>
         </div>
       </div>
+    </section>
 
-      <div class="pricing-guarantees reveal slide-scale">
-        <div class="guarantee-item">
-          <div class="guarantee-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
-          </div>
-          <div class="guarantee-content">
-            <strong>Instant Deployment</strong>
-            <span>Automated license activation via Discord in seconds</span>
-          </div>
+    <section id="benchmarks" class="metrics-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Performance Metrics</p>
+          <h2>Protection without the overhead</h2>
+          <p>Icelite is engineered around fast packet processing and lightweight server-side detection.</p>
         </div>
-        <div class="guarantee-item">
-          <div class="guarantee-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          </div>
-          <div class="guarantee-content">
-            <strong>Zero False Bans</strong>
-            <span>Strict multi-packet heuristic validation guarantee</span>
-          </div>
-        </div>
-        <div class="guarantee-item">
-          <div class="guarantee-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          </div>
-          <div class="guarantee-content">
-            <strong>Continuous Updates</strong>
-            <span>Real-time signature defense for all new clients</span>
-          </div>
+        <div class="metric-grid">
+          <div class="metric reveal"><strong>&lt; 0.4%</strong><span>CPU Overhead</span></div>
+          <div class="metric reveal delay-1"><strong>~42 MB</strong><span>Memory Footprint</span></div>
+          <div class="metric reveal delay-2"><strong>0.02 ms</strong><span>Tick Latency</span></div>
+          <div class="metric reveal delay-3"><strong>&lt; 1 Tick</strong><span>Cancel Response</span></div>
         </div>
       </div>
+    </section>
 
-      <div class="pricing-footer-note reveal">
-        Detailed plan descriptions and custom deployments can be found <a href="faq.html">in our documentation</a> or on <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">our Discord server</a>.
-      </div>
-    </div>
-  </section>
+    <section id="pricing" class="astro-section pricing-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Pricing</p>
+          <h2>Choose your plan</h2>
+          <p>Select the perfect plan for your server and unlock the full potential of Icelite.</p>
+        </div>
+        <div class="pricing-grid">
+<div class="pricing-card reveal slide-left">
+<div class="starter-badge">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="12"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+<span>Starter</span>
+</div>
+<div class="pricing-header">
+<div class="plan-title-row">
+<h3 class="plan-name">Small server</h3>
+<div class="plan-pill-tag">SMP</div>
+</div>
+<p class="plan-desc">Perfect for small servers with under 75 players online.</p>
+<div class="plan-price">
+<span class="price-currency">€</span>
+<span class="price-val">16</span>
+<span class="price-period">/month</span>
+</div>
+<div class="plan-billing-note">Billed quarterly • Instant activation</div>
+</div>
+<div class="plan-divider"></div>
+<div class="plan-features">
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>75</strong> total players online</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>5</strong> server instances</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>3</strong> unique hardware IDs</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text"><strong>ALL</strong> checks included</div>
+</div>
+</div>
+<div class="plan-cta">
+<a class="btn-plan" href="https://discord.gg/qWcdVDayF7" rel="noopener" target="_blank">
+<span>Subscribe</span>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+</div>
+</div>
+<div class="pricing-card popular reveal slide-scale delay-1">
+<div class="popular-badge">
+<svg fill="currentColor" height="12" viewbox="0 0 24 24" width="12"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<span>Most Popular</span>
+</div>
+<div class="pricing-header">
+<div class="plan-title-row">
+<h3 class="plan-name">Medium server</h3>
+<div class="plan-pill-tag pop">GROWTH</div>
+</div>
+<p class="plan-desc">Great for established servers and growing networks.</p>
+<div class="plan-price">
+<span class="price-currency">€</span>
+<span class="price-val">30</span>
+<span class="price-period">/month</span>
+</div>
+<div class="plan-billing-note">Monthly billing • Priority setup</div>
+</div>
+<div class="plan-divider"></div>
+<div class="plan-features">
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>180</strong> total players online</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>25</strong> server instances</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>5</strong> unique hardware IDs</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text"><strong>ALL</strong> checks included</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Priority Discord support queue</div>
+</div>
+</div>
+<div class="plan-cta">
+<a class="btn-plan btn-plan-popular" href="https://discord.gg/qWcdVDayF7" rel="noopener" target="_blank">
+<span>Subscribe</span>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+</div>
+</div>
+<div class="pricing-card reveal slide-right delay-2">
+<div class="pro-badge">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="12"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+<span>Network</span>
+</div>
+<div class="pricing-header">
+<div class="plan-title-row">
+<h3 class="plan-name">Large server</h3>
+<div class="plan-pill-tag pro">SCALE</div>
+</div>
+<p class="plan-desc">Great for large servers and minigame networks.</p>
+<div class="plan-price">
+<span class="price-currency">€</span>
+<span class="price-val">49</span>
+<span class="price-period">/month</span>
+</div>
+<div class="plan-billing-note">Monthly billing • High volume</div>
+</div>
+<div class="plan-divider"></div>
+<div class="plan-features">
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>450</strong> total players online</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text"><strong>Unlimited</strong> server instances</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Up to <strong>15</strong> unique hardware IDs</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text"><strong>ALL</strong> checks included</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Dedicated configuration tuning</div>
+</div>
+</div>
+<div class="plan-cta">
+<a class="btn-plan" href="https://discord.gg/qWcdVDayF7" rel="noopener" target="_blank">
+<span>Subscribe</span>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+</div>
+</div>
+<div class="pricing-card enterprise reveal slide-right delay-3">
+<div class="custom-badge">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="12"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+<span>Custom Solution</span>
+</div>
+<div class="pricing-header">
+<div class="plan-title-row">
+<h3 class="plan-name">Enterprise</h3>
+<div class="plan-pill-tag ent">VIP</div>
+</div>
+<p class="plan-desc">Tailored solutions for large networks with custom requirements.</p>
+<div class="plan-price">
+<span class="price-val" style="font-size: 2.2rem;">Custom</span>
+</div>
+<div class="plan-billing-note">Tailored contract • Custom SLA</div>
+</div>
+<div class="plan-divider"></div>
+<div class="plan-features">
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text"><strong>Unlimited</strong> players online</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text"><strong>Unlimited</strong> server instances</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text"><strong>Unlimited</strong> unique hardware IDs</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Dedicated 24/7 priority support</div>
+</div>
+<div class="plan-feature">
+<div class="feature-icon">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="feature-text">Custom heuristic profiling &amp; checks</div>
+</div>
+</div>
+<div class="plan-cta">
+<a class="btn-plan" href="https://discord.gg/qWcdVDayF7" rel="noopener" target="_blank">
+<span>Contact Sales</span>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+</div>
+</div>
+</div>      </div>
+    </section>
 
-  <section id="faq" class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Got Questions?</span>
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-subtitle">Quick answers to common questions about Icelite.</p>
-      </div>
-
-      <div class="faq-container reveal slide-scale">
-        <div class="faq-item active">
-          <button class="faq-trigger" type="button" aria-expanded="true">
-            <span>Does Icelite require players to install any client-side mod?</span>
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-content">
+    <section id="faq" class="astro-section faq-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Got Questions?</p>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container reveal slide-scale">
+<div class="faq-item active">
+<button aria-expanded="true" class="faq-trigger" type="button">
+<span>Does Icelite require players to install any client-side mod?</span>
+<svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<div class="faq-content">
             No. Icelite is 100% server-side. Players connect using vanilla Minecraft or any client without downloading anything.
           </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-trigger" type="button" aria-expanded="false">
-            <span>Which Minecraft versions and server engines are supported?</span>
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-content">
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-trigger" type="button">
+<span>Which Minecraft versions and server engines are supported?</span>
+<svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<div class="faq-content">
             Icelite supports Spigot, Paper, Purpur, Pufferfish, and Folia from 1.8.8 up to 1.21+. BungeeCord and Velocity proxy sync are included.
           </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-trigger" type="button" aria-expanded="false">
-            <span>How does the Cloud-Based offloading work?</span>
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-content">
-            Instant mitigations run locally on your server. Heavy rotation heuristics and 3D replay processing are offloaded to our cloud edge, keeping your TPS at a steady 20.0.
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-trigger" type="button">
+<span>Where does Icelite run?</span>
+<svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<div class="faq-content">
+            Icelite is server-side. Detection and enforcement run on your Minecraft server, so players do not need to install a client-side mod.
           </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-trigger" type="button" aria-expanded="false">
-            <span>Can I customize detection sensitivity for specific gamemodes?</span>
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-content">
-            Yes. Through config.yml or our web dashboard, you can define per-world sensitivity profiles for Practice, Bedwars, SMP, or Hubs.
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-trigger" type="button">
+<span>Can I customize detection sensitivity for specific gamemodes?</span>
+<svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<div class="faq-content">
+            Yes. Through config.yml, you can define per-world sensitivity and behavior settings for different server modes and environments.
           </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-trigger" type="button" aria-expanded="false">
-            <span>How do I set up Icelite on my server?</span>
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-content">
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-trigger" type="button">
+<span>How do I set up Icelite on my server?</span>
+<svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<div class="faq-content">
             Drag and drop IceliteAnticheat.jar into your /plugins folder, restart your server, and paste your license key in config.yml.
           </div>
-        </div>
+</div>
+</div>        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="get-started" class="section" style="padding-top: 20px;">
-    <div class="container">
-      <div class="cta-banner reveal slide-scale">
-        <h2>Freeze Cheaters in Their Tracks Today.</h2>
-        <p>
-          Join hundreds of leading Minecraft networks defending their communities with Icelite.
-        </p>
-        <div class="cta-banner-buttons">
-          <a href="#pricing" class="btn-primary" style="padding: 13px 30px; font-size: 1rem;">
-            <span>Get Started</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-          <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="btn-discord" style="padding: 13px 26px; font-size: 1rem;">
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-            <span>Discord Server</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer-wave-wrapper" aria-hidden="true">
-    <svg class="footer-wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.3"/>
-          <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.15"/>
-          <stop offset="100%" stop-color="#2563eb" stop-opacity="0.25"/>
-        </linearGradient>
-      </defs>
-      <path class="wave-layer-3" fill="url(#waveGrad1)" d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90.7L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
-      <path class="wave-layer-1" fill="#02040a" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.2" d="M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
-    </svg>
-  </div>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="index.html" class="brand">
-            <div class="brand-logo-wrap">
-              <img src="assets/logo.png" onerror="this.onerror=null; this.src='assets/logo.svg';" alt="Icelite Logo" class="brand-logo-img">
-            </div>
-            <div class="brand-text">
-              <span class="brand-name">Icelite</span>
-            </div>
-          </a>
-          <p>
-            Definitive anticheat solution for Minecraft servers. Built and protecting communities since 2026.
-          </p>
-          <div class="footer-status-pill">
-            <span class="status-pulse-dot"></span>
-            <span>Cloud Heuristics: <strong>ONLINE</strong></span>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h5>Product</h5>
-          <ul class="footer-links">
-            <li><a href="solution.html">Solution</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#benchmarks">Benchmarks</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Legal</h5>
-          <ul class="footer-links">
-            <li><a href="terms.html">Terms of Service</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="faq.html#licenses">License Agreement</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Community</h5>
-          <div class="footer-contact-item">
-            <a href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener" class="footer-community-card">
-              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-              <span>Join Discord</span>
-            </a>
-          </div>
-          <div class="footer-contact-item">
-            <a href="mailto:primary@icelite.top" class="footer-community-card">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span>primary@icelite.top</span>
-            </a>
+    <section id="get-started" class="final-cta">
+      <div class="container">
+        <div class="cta-inner reveal slide-scale">
+          <p class="eyebrow">Get Started</p>
+          <h2>Freeze cheaters in their tracks today.</h2>
+          <p>Deploy Icelite and protect your Minecraft server from cheating.</p>
+          <div class="hero-buttons">
+            <a class="hero-primary" href="#pricing">Get Started <span>→</span></a>
+            <a class="hero-secondary" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Join Discord <span>→</span></a>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="footer-bottom">
-        <div class="footer-copyright">&copy; 2026 Icelite Anticheat v3.4. All Rights Reserved.</div>
-        <div class="footer-disclaimer">
-          Icelite Anticheat is not an official Minecraft product. We are not approved by or affiliated with Mojang or Microsoft.
-        </div>
+    <footer class="site-footer reference-footer">
+      <div class="container reference-footer-inner">
+        <a href="index.html" class="reference-footer-brand" aria-label="Icelite home">
+          <span class="reference-footer-logo"><img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="Icelite"></span>
+          <span>Icelite</span>
+        </a>
+        <p class="reference-footer-tagline">Modern cheat detection for Minecraft servers.</p>
+        <nav class="reference-footer-links" aria-label="Footer navigation">
+          <a href="solution.html">Docs</a>
+          <a href="faq.html">Status</a>
+          <span>© 2026</span>
+        </nav>
       </div>
-    </div>
-  </footer>
-
+    </footer>
+  </main>
   <script src="main.js"></script>
 </body>
 </html>
