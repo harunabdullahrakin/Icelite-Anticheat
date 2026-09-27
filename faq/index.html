@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ &amp; Documentation — Icelite Anticheat</title>
+  <meta name="description" content="Frequently asked questions, setup guide, config.yml options, and command reference for Icelite Anticheat.">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo.png">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"></div>
+
+  <header class="nav-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="../" class="brand" aria-label="Icelite home">
+        <span class="brand-name">Icelite Anticheat</span>
+      </a>
+      <div class="nav-links">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../solution/" class="nav-link">Solution</a>
+        <a href="../about/" class="nav-link">About Us</a>
+        <a href="../faq/" class="nav-link active">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a class="nav-discord" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Discord</a>
+        <a class="nav-cta" href="../#pricing">Get Started <span>›</span></a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Help &amp; Documentation</p>
+          <h1>Frequently Asked Questions</h1>
+          <p>Setup instructions, configuration snippets, and common questions answered.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section">
+      <div class="container subpage-container">
+        <div class="doc-card reveal">
+          <h2>Quickstart Setup (60 Seconds)</h2>
+          <ol>
+            <li>Download the Icelite Anticheat <code>.jar</code> file provided with your license.</li>
+            <li>Place the <code>.jar</code> into your server's <code>/plugins</code> directory.</li>
+            <li>Restart your Minecraft server or execute your server start script.</li>
+            <li>Open <code>plugins/Icelite/config.yml</code> and paste your authorization key.</li>
+            <li>Run <code>/icelite reload</code> in console or in-game.</li>
+          </ol>
+          <div class="code-block">license-key: "YOUR-LICENSE-KEY"
+webhook:
+  enabled: true
+  discord-url: "https://discord.com/api/webhooks/..."
+checks:
+  combat:
+    reach:
+      max-distance: 3.00
+      action: "CANCEL_ATTACK"</div>
+        </div>
+
+        <div class="section-heading reveal" style="margin-top: 60px; margin-bottom: 30px;">
+          <p class="eyebrow">FAQ Accordion</p>
+          <h2>General Questions</h2>
+        </div>
+
+        <div class="faq-container reveal">
+          <div class="faq-item active">
+            <button aria-expanded="true" class="faq-trigger" type="button">
+              <span>Does Icelite require players to install any client-side mod?</span>
+              <svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+              No. Icelite is 100% server-side. Players connect using vanilla Minecraft or any standard client without installing mods, certificates, or background software.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button aria-expanded="false" class="faq-trigger" type="button">
+              <span>Which Minecraft versions and server engines are supported?</span>
+              <svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+              Icelite supports Spigot, Paper, Purpur, Pufferfish, and Folia from 1.8.8 all the way up to 1.21+. Proxy networks using BungeeCord or Velocity are supported out of the box.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button aria-expanded="false" class="faq-trigger" type="button">
+              <span>How does Icelite prevent false positives during high lag or ping?</span>
+              <svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+              Our physics engine models exact vanilla movement and tick latency. Packet timing buffers account for ping jitter and network spikes, ensuring legitimate combos are never flagged.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button aria-expanded="false" class="faq-trigger" type="button">
+              <span>Can I customize detection sensitivity for specific gamemodes?</span>
+              <svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+              Yes. Through <code>config.yml</code>, you can configure world-specific profiles, disable specific movement checks in lobby worlds, or adjust combat cancel thresholds for competitive arenas.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button aria-expanded="false" class="faq-trigger" type="button">
+              <span>What commands are available for administrators?</span>
+              <svg class="faq-icon" fill="none" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-content">
+              Key commands include <code>/icelite reload</code>, <code>/icelite alerts</code> (toggles staff notifications), <code>/icelite inspect &lt;player&gt;</code> (displays real-time packet telemetry), and <code>/icelite freeze &lt;player&gt;</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-card reveal delay-1" style="margin-top: 50px;">
+          <h2>Staff Permissions Reference</h2>
+          <ul>
+            <li><code>icelite.admin</code> — Full access to all Icelite commands, reloading, and configurations.</li>
+            <li><code>icelite.alerts</code> — Receive in-game real-time violation notices with click-to-teleport.</li>
+            <li><code>icelite.inspect</code> — Permission to view live combat metrics and heuristic logs.</li>
+            <li><code>icelite.bypass</code> — Immunity from active anticheat cancellation and checks (intended for testing).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <p class="eyebrow">Still Have Questions?</p>
+          <h2>Join our active community.</h2>
+          <p>Our developers and server administrators are available around the clock on Discord.</p>
+          <div class="hero-buttons">
+            <a class="hero-primary" href="../#pricing">Get License <span>→</span></a>
+            <a class="hero-secondary" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Join Discord <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer reference-footer">
+      <div class="container reference-footer-inner">
+        <a href="../" class="reference-footer-brand" aria-label="Icelite home">
+          <span class="reference-footer-logo"><img src="../assets/logo.png" onerror="this.onerror=null;this.src='../assets/logo.svg'" alt="Icelite"></span>
+          <span>Icelite</span>
+        </a>
+        <p class="reference-footer-tagline">Modern cheat detection for Minecraft servers.</p>
+        <nav class="reference-footer-links" aria-label="Footer navigation">
+          <a href="../solution/">Solution</a>
+          <a href="../about/">About</a>
+          <a href="../faq/">FAQ</a>
+          <a href="../terms/">Terms</a>
+          <a href="../privacy/">Privacy</a>
+          <span>© 2026</span>
+        </nav>
+      </div>
+    </footer>
+  </main>
+
+  <script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Icelite Anticheat</title>
+  <meta name="description" content="Privacy Policy and data security standards for Icelite Anticheat software.">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo.png">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"></div>
+
+  <header class="nav-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="../" class="brand" aria-label="Icelite home">
+        <span class="brand-name">Icelite Anticheat</span>
+      </a>
+      <div class="nav-links">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../solution/" class="nav-link">Solution</a>
+        <a href="../about/" class="nav-link">About Us</a>
+        <a href="../faq/" class="nav-link">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a class="nav-discord" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Discord</a>
+        <a class="nav-cta" href="../#pricing">Get Started <span>›</span></a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Privacy &amp; Security</p>
+          <h1>Privacy Policy</h1>
+          <p>Last updated: January 2026. How Icelite respects player privacy and manages telemetry.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section">
+      <div class="container subpage-container">
+        <div class="doc-card reveal">
+          <h2>1. Player Privacy Standard</h2>
+          <p>
+            Icelite Anticheat is strictly a server-side detection suite. We do not operate on player computers, scan personal drives, access background desktop processes, or gather client-side hardware identifiers.
+          </p>
+
+          <h2>2. Data Collection &amp; Telemetry</h2>
+          <p>
+            When cloud heuristics and violation logs are enabled by the server administrator, the only data transmitted consists of:
+          </p>
+          <ul>
+            <li>In-game player UUID and player name.</li>
+            <li>In-game packet timing deltas (coordinates, rotation angles, click timings, tick timestamps).</li>
+            <li>Server IP address and port for license verification.</li>
+          </ul>
+
+          <h2>3. Data Retention &amp; Security</h2>
+          <p>
+            All heuristic data transmitted to Icelite cloud nodes is encrypted in transit using TLS 1.3. Replay logs and tick buffers older than 30 days are purged automatically.
+          </p>
+
+          <h2>4. Server Owner Control</h2>
+          <p>
+            Server owners have complete liberty to disable cloud heuristics in <code>config.yml</code> and operate in fully localized offline mode if desired.
+          </p>
+
+          <h2>5. Contact Data Privacy Officer</h2>
+          <p>
+            For questions regarding data processing or data deletion requests, contact our privacy team at <a href="mailto:primary@icelite.top" style="color:var(--accent);">primary@icelite.top</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer reference-footer">
+      <div class="container reference-footer-inner">
+        <a href="../" class="reference-footer-brand" aria-label="Icelite home">
+          <span class="reference-footer-logo"><img src="../assets/logo.png" onerror="this.onerror=null;this.src='../assets/logo.svg'" alt="Icelite"></span>
+          <span>Icelite</span>
+        </a>
+        <p class="reference-footer-tagline">Modern cheat detection for Minecraft servers.</p>
+        <nav class="reference-footer-links" aria-label="Footer navigation">
+          <a href="../solution/">Solution</a>
+          <a href="../about/">About</a>
+          <a href="../faq/">FAQ</a>
+          <a href="../terms/">Terms</a>
+          <a href="../privacy/">Privacy</a>
+          <span>© 2026</span>
+        </nav>
+      </div>
+    </footer>
+  </main>
+
+  <script src="../main.js"></script>
+</body>
+</html>

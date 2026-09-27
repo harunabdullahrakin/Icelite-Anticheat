@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Icelite Anticheat</title>
+  <meta name="description" content="Learn about the Icelite Anticheat team, our mission, and our technology standards.">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo.png">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"></div>
+
+  <header class="nav-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="../" class="brand" aria-label="Icelite home">
+        <span class="brand-name">Icelite Anticheat</span>
+      </a>
+      <div class="nav-links">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../solution/" class="nav-link">Solution</a>
+        <a href="../about/" class="nav-link active">About Us</a>
+        <a href="../faq/" class="nav-link">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a class="nav-discord" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Discord</a>
+        <a class="nav-cta" href="../#pricing">Get Started <span>›</span></a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">About Us</p>
+          <h1>Protecting Minecraft Since 2026</h1>
+          <p>Built by competitive Minecraft developers and network administrators with a focus on TPS stability and zero false positives.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section">
+      <div class="container subpage-container">
+        <div class="doc-card reveal">
+          <h2>Our Core Mission</h2>
+          <p>
+            Competitive Minecraft servers have long struggled with a dilemma: aggressive anticheats that lag the server and false-ban legitimate PvP combos, or passive anticheats that let modern ghost clients bypass detection.
+          </p>
+          <p>
+            We created Icelite to solve both sides of this equation. By intercepting raw Netty packets and evaluating deterministic physics models, Icelite catches subtle combat modifications while preserving 20.0 TPS.
+          </p>
+        </div>
+
+        <div class="subpage-grid">
+          <div class="doc-card reveal">
+            <h3>Server-Side Purity</h3>
+            <p>100% server-side operation. Players never need to install third-party clients, launchers, or background daemons.</p>
+          </div>
+          <div class="doc-card reveal delay-1">
+            <h3>Zero False Bans</h3>
+            <p>Extensively calibrated across high-ping environments, lag spikes, and complex vanilla mechanics to guarantee fairness.</p>
+          </div>
+          <div class="doc-card reveal delay-2">
+            <h3>Modern Architecture</h3>
+            <p>Native multi-threading, Folia thread-safety, Netty channel pipelines, and asynchronous webhook dispatching.</p>
+          </div>
+        </div>
+
+        <div class="doc-card reveal delay-1">
+          <h2>Engineering Principles</h2>
+          <p>
+            Every single check in Icelite is governed by four strict standards:
+          </p>
+          <ol>
+            <li><strong>Deterministic Verification:</strong> A player is only flagged when actions mathematically violate Minecraft movement and combat limits.</li>
+            <li><strong>Zero Main-Thread Blocking:</strong> Heavy heuristics, Discord webhooks, and database logging are strictly offloaded from the server tick thread.</li>
+            <li><strong>Granular Configuration:</strong> Server operators retain complete control over check thresholds, cancel actions, freeze triggers, and per-world rules.</li>
+            <li><strong>Instant Updates:</strong> Rapid patches ensure detection stays ahead of evolving ghost clients and combat bypasses.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <p class="eyebrow">Get In Touch</p>
+          <h2>Have questions or custom requests?</h2>
+          <p>Join our Discord community to speak directly with our core engineering team.</p>
+          <div class="hero-buttons">
+            <a class="hero-primary" href="../#pricing">Explore Plans <span>→</span></a>
+            <a class="hero-secondary" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Join Discord <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer reference-footer">
+      <div class="container reference-footer-inner">
+        <a href="../" class="reference-footer-brand" aria-label="Icelite home">
+          <span class="reference-footer-logo"><img src="../assets/logo.png" onerror="this.onerror=null;this.src='../assets/logo.svg'" alt="Icelite"></span>
+          <span>Icelite</span>
+        </a>
+        <p class="reference-footer-tagline">Modern cheat detection for Minecraft servers.</p>
+        <nav class="reference-footer-links" aria-label="Footer navigation">
+          <a href="../solution/">Solution</a>
+          <a href="../about/">About</a>
+          <a href="../faq/">FAQ</a>
+          <a href="../terms/">Terms</a>
+          <a href="../privacy/">Privacy</a>
+          <span>© 2026</span>
+        </nav>
+      </div>
+    </footer>
+  </main>
+
+  <script src="../main.js"></script>
+</body>
+</html>

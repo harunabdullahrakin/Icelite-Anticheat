@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solution &amp; Architecture — Icelite Anticheat</title>
+  <meta name="description" content="Explore the technical architecture of Icelite Anticheat: packet interceptors, deterministic physics simulation, and cloud heuristics.">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo.png">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"></div>
+
+  <header class="nav-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="../" class="brand" aria-label="Icelite home">
+        <span class="brand-name">Icelite Anticheat</span>
+      </a>
+      <div class="nav-links">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../solution/" class="nav-link active">Solution</a>
+        <a href="../about/" class="nav-link">About Us</a>
+        <a href="../faq/" class="nav-link">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a class="nav-discord" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Discord</a>
+        <a class="nav-cta" href="../#pricing">Get Started <span>›</span></a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Architecture</p>
+          <h1>The Icelite Solution</h1>
+          <p>Native packet interception paired with deterministic physics simulation. Zero lag, zero false bans.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section">
+      <div class="container subpage-container">
+        <div class="doc-card reveal">
+          <h2>1. Low-Level Netty Packet Interception</h2>
+          <p>
+            Icelite hooks directly into Netty's channel pipeline before packets reach the Minecraft main tick loop. Illegal combat packets are cancelled instantly in sub-millisecond time.
+          </p>
+          <div class="code-block">[Netty Channel] &rarr; [Icelite Byte Interceptor] &rarr; [Instant Cancel/Filter] &rarr; [Vanilla Tick Loop]</div>
+          <p>
+            Evaluated asynchronously across dedicated worker threads with zero main-thread TPS drop.
+          </p>
+        </div>
+
+        <div class="doc-card reveal delay-1">
+          <h2>2. Deterministic Vanilla Physics Engine</h2>
+          <p>
+            Simulates the exact vanilla Minecraft movement formulas to eliminate false flags:
+          </p>
+          <ul>
+            <li>Ground friction calculation based on block type (Ice, Slime, Soul Sand).</li>
+            <li>Inertia decay and gravity acceleration tracking per player tick.</li>
+            <li>Precise bounding-box raycasting against player position history buffers.</li>
+          </ul>
+          <p>
+            Combat checks compute exact mathematical line-of-sight to prevent bypasses without hindering legitimate PvP mechanics.
+          </p>
+        </div>
+
+        <div class="doc-card reveal delay-2">
+          <h2>3. Cloud Heuristics &amp; Replay Profiling</h2>
+          <p>
+            Complex pattern detection runs out-of-band on isolated threads and cloud heuristic clusters.
+          </p>
+          <div class="code-block">[Client Actions] &rarr; [Tick Ring Buffer] &rarr; [Cloud Heuristic Model] &rarr; [Deterministic Verdict]</div>
+          <p>
+            Suspicious patterns are evaluated across thousands of ticks. Sudden bursts, rotation irregularities, and click jitter are cross-referenced with millisecond accuracy.
+          </p>
+        </div>
+
+        <div class="doc-card reveal delay-3">
+          <h2>4. Proxy-Aware Multi-Server Synchronization</h2>
+          <p>
+            Whether running standalone Paper servers or a 100-instance Folia network behind Velocity or BungeeCord, Icelite synchronizes player violation data across nodes in real-time.
+          </p>
+          <p>
+            Staff alerts, automated freezes, and Discord webhook notifications fire across all lobbies simultaneously.
+          </p>
+        </div>
+
+        <div class="subpage-grid">
+          <div class="doc-card reveal">
+            <h3>&lt; 0.4% CPU</h3>
+            <p>Benchmarked across 450+ concurrent players in high-action PvP conditions.</p>
+          </div>
+          <div class="doc-card reveal delay-1">
+            <h3>&lt; 1 Tick</h3>
+            <p>Immediate cancel response prevents unfair hits before damage applies.</p>
+          </div>
+          <div class="doc-card reveal delay-2">
+            <h3>1.8.8 to 1.21+</h3>
+            <p>Compatible with all major Spigot, Paper, Purpur, Pufferfish, and Folia releases.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <p class="eyebrow">Deploy Now</p>
+          <h2>Ready to secure your network?</h2>
+          <p>Experience server-side protection calibrated for competitive Minecraft.</p>
+          <div class="hero-buttons">
+            <a class="hero-primary" href="../#pricing">View Pricing <span>→</span></a>
+            <a class="hero-secondary" href="https://discord.gg/qWcdVDayF7" target="_blank" rel="noopener">Join Discord <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer reference-footer">
+      <div class="container reference-footer-inner">
+        <a href="../" class="reference-footer-brand" aria-label="Icelite home">
+          <span class="reference-footer-logo"><img src="../assets/logo.png" onerror="this.onerror=null;this.src='../assets/logo.svg'" alt="Icelite"></span>
+          <span>Icelite</span>
+        </a>
+        <p class="reference-footer-tagline">Modern cheat detection for Minecraft servers.</p>
+        <nav class="reference-footer-links" aria-label="Footer navigation">
+          <a href="../solution/">Solution</a>
+          <a href="../about/">About</a>
+          <a href="../faq/">FAQ</a>
+          <a href="../terms/">Terms</a>
+          <a href="../privacy/">Privacy</a>
+          <span>© 2026</span>
+        </nav>
+      </div>
+    </footer>
+  </main>
+
+  <script src="../main.js"></script>
+</body>
+</html>
