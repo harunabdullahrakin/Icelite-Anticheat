@@ -10,7 +10,6 @@ function initApp() {
   initScrollProgress();
   initHeroVideo();
   initHeroParallax();
-  initSectionMotion();
 }
 
 function bindGlobalDelegation() {
@@ -34,6 +33,15 @@ function bindGlobalDelegation() {
     if (navLink) {
       const navLinks = document.querySelector('.nav-links');
       if (navLinks) navLinks.classList.remove('open');
+      return;
+    }
+
+    const insideNav = e.target.closest('.navbar');
+    if (!insideNav) {
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+      }
     }
   }, { passive: false });
 }
@@ -63,44 +71,15 @@ function initScrollReveal() {
     return;
   }
 
-  // Give groups a natural, Polar-like stagger without adding a heavy animation library.
-  const groups = [
-    '.astro-feature-grid', '.detection-grid', '.impact-grid', '.metric-grid',
-    '.pricing-grid', '.faq-container', '.footer-main', '.cta-inner'
-  ];
-  groups.forEach(selector => {
-    document.querySelectorAll(selector).forEach(group => {
-      const items = Array.from(group.querySelectorAll(':scope > .reveal'));
-      items.forEach((item, index) => {
-        item.style.setProperty('--reveal-delay', `${Math.min(index * 70, 280)}ms`);
-        item.classList.add('reveal-stagger');
-      });
-    });
-  });
-
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('reveal-active');
       obs.unobserve(entry.target);
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -9% 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
   reveals.forEach(el => observer.observe(el));
-}
-
-function initSectionMotion() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const sections = document.querySelectorAll('main > section');
-  if (!sections.length || !('IntersectionObserver' in window)) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      entry.target.classList.toggle('section-in-view', entry.isIntersecting);
-    });
-  }, { threshold: 0.08, rootMargin: '-8% 0px -8% 0px' });
-
-  sections.forEach(section => observer.observe(section));
 }
 
 function initNavbarScroll() {
@@ -112,8 +91,7 @@ function initNavbarScroll() {
     scrollTicking = true;
     requestAnimationFrame(() => {
       const y = window.scrollY;
-      navWrapper.classList.toggle('nav-scrolled', y > 28);
-      if (y < 20) navWrapper.classList.remove('nav-hidden');
+      navWrapper.classList.toggle('nav-scrolled', y > 24);
       scrollTicking = false;
     });
   }, { passive: true });
